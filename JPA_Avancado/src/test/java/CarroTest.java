@@ -29,15 +29,19 @@ public class CarroTest {
         carro.setCodigo("123");
         carro.setNome("AMG-GT");
         carro.assessorios.add(assessorio);
+
+
+        assessorio.setCarro(carro);
+
     }
 
     @Test
     public void testInicial(){
 
         daoM.cadastrar(marca);
+        Carro test1 = dao.cadastrar(carro);
         daoA.cadastrar(assessorio);
 
-        Carro test1 = dao.cadastrar(carro);
         Assert.assertNotNull(test1);
 
     }
