@@ -4,7 +4,9 @@
              version="3.1">
 
     <persistence-unit name="Elias" transaction-type="RESOURCE_LOCAL">
-        <class>com.atividade.entidades.Produto</class>
+        <class>com.atividade.entidades.Marca</class>
+        <class>com.atividade.entidades.Assessorio</class>
+        <class>com.atividade.entidades.Carro</class>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/JPA"/>
             <property name="jakarta.persistence.jdbc.user" value="postgres"/>

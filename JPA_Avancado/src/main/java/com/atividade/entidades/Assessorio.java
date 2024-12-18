@@ -1,17 +1,16 @@
 package com.atividade.entidades;
 
+import jakarta.persistence.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "ProdutoTB2")
-public class Produto {
+@Table(name = "assessorioTB")
+public class Assessorio {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator="ass_seq")
+    @SequenceGenerator(name="ass_seq", sequenceName = "assSeq", initialValue = 1, allocationSize = 1)
     private long id;
 
     @Column(name = "nome")
@@ -19,6 +18,12 @@ public class Produto {
 
     @Column(name = "codigo")
     private String codigo;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_ass_id", foreignKey = @ForeignKey(name = "fk_ass_carro"),
+            referencedColumnName = "id")
+    private Carro carro;
+
 
     public long getId() {
         return id;
@@ -42,5 +47,13 @@ public class Produto {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public Carro getCarro() {
+        return carro;
+    }
+
+    public void setCarro(Carro carro) {
+        this.carro = carro;
     }
 }

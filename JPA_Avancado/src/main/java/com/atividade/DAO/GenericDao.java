@@ -1,28 +1,22 @@
 package com.atividade.DAO;
 
-
-import com.atividade.entidades.Produto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-public class ProdutoDAO implements IProdutoDAO {
-
-
+public class GenericDao<T> implements IGenereicDao<T> {
     @Override
-    public Produto cadastrar(Produto produto) {
-
+    public T cadastrar(T entrety) {
         EntityManagerFactory entityManagerFactory =
                 Persistence.createEntityManagerFactory("Elias");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         entityManager.getTransaction().begin();
-        entityManager.persist(produto);
+        entityManager.persist(entrety);
         entityManager.getTransaction().commit();
 
         entityManager.close();
         entityManagerFactory.close();
 
-        return produto;
-    }
+        return entrety;    }
 }
